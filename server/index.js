@@ -151,10 +151,17 @@ app.get("/api/health", (req, res) => {
 
 // --- Start Server ---
 const PORT = process.env.PORT || 3000;
+const HOST = "0.0.0.0";
 
-initDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Reminder server running on port ${PORT}`);
-    console.log("Scheduler active - checking for due reminders every minute");
+initDB()
+  .then(() => {
+    app.listen(PORT, HOST, () => {
+      console.log(`Reminder server running on ${HOST}:${PORT}`);
+      console.log("Scheduler active - checking for due reminders every minute");
+    });
+  })
+  .catch((err) => {
+    console.error("Failed to initialize database:", err.message);
+    console.error("Make sure DATABASE_URL is set correctly");
+    process.exit(1);
   });
-});
