@@ -1,0 +1,11 @@
+{
+  "name": "reminder-app",
+  "private": true,
+  "scripts": {
+    "start": "cd server && node index.js",
+    "build": "cd server && npm install"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
